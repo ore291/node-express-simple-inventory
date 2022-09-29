@@ -1,0 +1,13 @@
+
+extends layout
+
+block layout-content
+    ul.my-4.list-unstyled.text-danger
+        each msg in messages
+            li= msg
+    div.form-page
+        form(role='form' method='POST' action='/product-scan')
+            div.form-group
+                label(for='id') Product Name:
+                input#id.form-control(type='text' placeholder='enter product code' name='id' required)
+            button.btn.m-3.btn-primary(type="submit") Submit

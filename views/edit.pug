@@ -1,0 +1,33 @@
+extends layout
+
+block layout-content
+    script.
+        $(document).ready(function(){
+        //- $('.count').prop('disabled', true);
+        $(document).on('click','.plus',function(){
+            $('.count').val(parseInt($('.count').val()) + 1 );
+        });
+        $(document).on('click','.minus',function(){
+            $('.count').val(parseInt($('.count').val()) - 1 );
+                if ($('.count').val() == 0) {
+                    $('.count').val(1);
+                }
+            });
+        });
+    div.form-page
+        form(role='form' method='POST' action='/update-product')
+            div.form-group
+                label(for='name') Product Name:
+                input#id.form-control(type='hidden', name='id', required , value=data.id)
+                input#code.form-control(type='hidden', name='code', required , value=data.code)
+                input#name.form-control(type='text', placeholder='enter product name' name='name'  value=data.name)
+            div.form-group
+                label(for='quantity') Quantity:
+                div.qty.d-flex
+                    span.minus.bg-dark -
+                    input#quantity.count.form-control(type='number' name='quantity'  value=data.quantity)
+                    span.plus.bg-dark +    
+            div.form-group
+                label(for='price') Price:
+                input#price.form-control(type='number' name='price'  value=data.price)
+            button.btn.m-3.btn-primary(type="submit") Update

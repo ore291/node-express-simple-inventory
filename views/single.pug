@@ -1,0 +1,27 @@
+extends layout
+
+block layout-content
+    - var img = `/barcodes/${data.code}.png`
+    - var link = `/edit-product/${data.code}`
+
+    div.card.mt-2
+        a(href=img download=data.name)
+            img(src=img alt='barcode' style='width:100%' )
+        .container
+            h4
+                | Name : 
+                b #{data.name}
+            
+            p 
+               | Product code : 
+               b #{data.code}
+            p 
+                | Product price : 
+                b #{data.price}
+            
+            p 
+                | Product quantity : 
+                b #{data.quantity}
+        a(href=link)
+            button.m-2.btn.btn-info(type="link") Edit Product
+

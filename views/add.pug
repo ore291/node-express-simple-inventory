@@ -1,0 +1,17 @@
+
+extends layout
+
+block layout-content
+    div.form-page
+        form(role='form' method='POST' action='/add-product')
+            div.form-group
+                label(for='name') Product Name:
+                input#name.form-control(type='text', placeholder='enter product name' name='name' required)
+            div.form-group
+                label(for='quantity') Quantity:
+                input#quantity.form-control(type='number' name='quantity' required)
+            div.form-group
+                label(for='price') Price:
+                input#price.form-control(type='number' name='price' required)
+            button.btn.m-3.btn-primary(type="submit") Submit
+        
