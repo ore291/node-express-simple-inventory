@@ -129,68 +129,22 @@ const getProducts = async (req, res) => {
   }
 };
 
-// app.post('/register', (req, res) => {
-//     //{failureRedirect: '/register'},
-//     db.run("insert into user(id, username, password) values(?, ?, ?)",
-//     Date.now(),
-//     req.user,
-//     req.body.password,
-//     (err) => {
-//         if(err)
-//            res.send(err);
-//         else
-//            res.redirect("/login");
-//     });
+const deleteProduct = async (req, res) => {
+  try {
+    db.all("delete from inventory where id=?",req.params.id, (err) => {
+      if (err) res.send(err);
+      else {
+        res.redirect("/products");
+      }
+    });
+  } catch (e) {
+    console.log(
+      `error ocurred in productController at deleteProduct() , error message : ${e.message}`
+    );
+  }
+};
 
-//   });
 
-//   //show data
-//   app.get('/', (req, res) => {
-//       if(req.isAuthenticated()){
-//       db.all("select * from inventory where resp_person = ?", req.user, (err, rows) => {
-//         if(err)
-//           res.send(err);
-//         else{
-//           res.send(pug.renderFile('list.pug', {
-//             "inv_list": rows
-//           }));
-//         }
-//       });
-//      }else{
-//        console.log("Unauthenticated user!!!");
-//        res.redirect('/login');
-//      }
-//   });
-
-//   //add data
-//   app.get('/add', (req, res) => {
-//     res.sendFile(`${__dirname}/add.html`);
-//   })
-//   app.post('/add', (req, res) => {
-//     db.run("insert into inventory(id, title, resp_person) values(?, ?, ?)",
-//     Date.now(),
-//     req.body.title,
-//     req.user,
-//     (err) => {
-//         if(err)
-//            res.send(err);
-//         else
-//            res.redirect("/");
-//     });
-//   });
-
-//   //delete data
-//   app.post('/delete', (req, res) => {
-//     console.log(req.body.delid);
-//     db.run("delete from inventory where id=?",
-//     req.body.delid,
-//     (err) => {
-//         if(err)
-//            res.send(err);
-//         else
-//            res.redirect("/");
-//     });
-//   });
 
 module.exports = {
   getProducts,
@@ -198,9 +152,5 @@ module.exports = {
   postProduct,
   editProduct,
   updateProduct,
-
-  // getProductById,
-  // putProduct,
-  // getProductByCode,
-  // deleteProduct,
+  deleteProduct,
 };

@@ -54,6 +54,8 @@ app.get("/add-product", (req, res) => {
   res.render("add", { title: "Add Product" });
 });
 
+app.get("/delete-product/:id", prodController.deleteProduct);
+
 
 app.get("/edit-product/:id",  prodController.editProduct);
 

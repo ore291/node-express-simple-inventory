@@ -3,6 +3,7 @@ extends layout
 block layout-content
     - var img = `/barcodes/${data.code}.png`
     - var link = `/edit-product/${data.code}`
+    - var del = `/delete-product/${data.id}`
 
     div.card.mt-2
         a(href=img download=data.name)
@@ -22,6 +23,9 @@ block layout-content
             p 
                 | Product quantity : 
                 b #{data.quantity}
-        a(href=link)
-            button.m-2.btn.btn-info(type="link") Edit Product
+        div.d-flex.align-items-center.justify-content-between
+            a(href=link)
+                button.m-2.btn.btn-info(type="link") Edit Product
+            a(href=del)
+                button.m-2.btn.btn-danger(type="link") Delete Product
 
