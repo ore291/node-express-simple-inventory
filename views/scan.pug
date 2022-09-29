@@ -5,9 +5,10 @@ block layout-content
     ul.my-4.list-unstyled.text-danger
         each msg in messages
             li= msg
+    h1.text-center.text-dark.bold SCAN PRODUCT BARCODE
     div.form-page
         form(role='form' method='POST' action='/product-scan')
             div.form-group
-                label(for='id') Product Name:
-                input#id.form-control(type='text' placeholder='enter product code' name='id' required)
+                label(for='id') Product Code:
+                input#id.form-control(type='text' placeholder='Scan or type to enter product code' name='id' required)
             button.btn.m-3.btn-primary(type="submit") Submit
